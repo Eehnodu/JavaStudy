@@ -1,0 +1,10 @@
+package switch문;
+
+public class Ex02자판기프로그램 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

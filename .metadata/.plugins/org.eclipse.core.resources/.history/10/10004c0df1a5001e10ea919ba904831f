@@ -1,0 +1,10 @@
+package ifelse문;
+
+public class Ex02ifelse문예제 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
