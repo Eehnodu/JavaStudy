@@ -1,4 +1,4 @@
-package task;
+package day1;
 
 import java.util.Scanner;
 
@@ -10,7 +10,7 @@ public class Ex01 {
 		int time = sc.nextInt();
 		int few = 5000;
 		int total = 0;
-		int time2 = time;
+		int time2 = 0;
 		if (time > 8 ) {
 			time2 = time - 8;
 			total = few * 8 + (int)(time2 * few * 1.5);

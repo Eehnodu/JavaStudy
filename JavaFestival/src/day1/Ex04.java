@@ -1,4 +1,4 @@
-package task;
+package day1;
 
 import java.util.Scanner;
 
@@ -15,12 +15,8 @@ public class Ex04 {
 		if(num1 > 0 && num2 >0) {
 			result1 = num1 * (num2%10);
 			System.out.println(result1);
-		}
-		if(num1 > 0 && num2 >0) {
 			result2 = num1 * (num2%100/10);
 			System.out.println(result2);
-		}
-		if(num1 > 0 && num2 >0) {
 			result3 = num1 * (num2/100);
 			System.out.println(result3);
 		}
