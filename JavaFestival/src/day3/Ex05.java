@@ -11,10 +11,8 @@ public class Ex05 {
         int num = sc.nextInt();
         int sum = 0;
 
-        for (int i = 7; i >= 0; i--) {
-        	// Math.pow = 제곱을 구하는 함수 --> Math.pow(10,i) = 10의 i승
-        	// 10의 i승 만큼 나누고 몫의 1의 자리를 더하기 위해 %(나머지) 연산
-            int digit = (num / (int) Math.pow(10, i)) % 10; 
+        for (int i = 10000000; i >= 1; i/=10) {
+            int digit = (num / i) % 10; 
             sum += digit;
         }
         System.out.print("합은 " + sum + "입니다.");
