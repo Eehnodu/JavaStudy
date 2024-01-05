@@ -10,7 +10,7 @@ public class Ex03 {
 		System.out.print("행 개수 : ");
 		int num = sc.nextInt();
 		for(int i = num; i > 0; i--) {
-			for(int j = 0; j < i; j++) {
+			for(int j = 1; j < i; j++) {
 				System.out.print(" ");
 			}
 			for(int k = 0; k <= num-i; k++) {
