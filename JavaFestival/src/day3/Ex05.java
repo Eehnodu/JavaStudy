@@ -18,3 +18,4 @@ public class Ex05 {
         System.out.print("합은 " + sum + "입니다.");
 	}
 }
+  
