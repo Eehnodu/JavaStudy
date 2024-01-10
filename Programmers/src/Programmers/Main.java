@@ -6,11 +6,17 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-    	String my_string = "cvsgiorszzzmrpaqpe";
-    	int[] list = {16,6,5,3,12,14,11,11,17,12,7};
-    	String answer = "";
-    	String[] arr = my_string.split("");
-    	System.out.print(Arrays.toString(arr));
-
+    	String str = "rermgorpasam";
+    	int[][] queries = {{2,3}, {0,7}, {5,9}, {6,10}};
+    	
+    	String[] result = str.split("");
+    	System.out.println(Arrays.toString(result));
+    	
+    	for(int i = 0; i<queries.length; i++) {
+    		for(int j = 0; j<2; j++) {
+    			int s = queries[i][j];
+    			int e = queries[i][j];
+    		}
+    	}
     }
 }
