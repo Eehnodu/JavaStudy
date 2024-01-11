@@ -1,8 +1,8 @@
-package day3;
+package JavaFestivalQ;
 
 import java.util.Scanner;
 
-public class Ex05 {
+public class Ex16 {
 
 	public static void main(String[] args) {
 
