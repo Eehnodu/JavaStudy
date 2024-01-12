@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Ex14 {
 
 	public static void main(String[] args) {
-		
 		Scanner sc = new Scanner(System.in);
 		System.out.print("배열의 크기를 정할 정수 N 입력 : ");
 		int n = sc.nextInt();

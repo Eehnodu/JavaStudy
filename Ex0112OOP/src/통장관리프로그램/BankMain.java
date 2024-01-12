@@ -8,8 +8,7 @@ public class BankMain {
 		bank1.deposit(1000);
 		bank1.withdraw(300);
 		System.out.println(bank1.showMoney());
-		
-		
+
 	}
 
 }

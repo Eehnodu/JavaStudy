@@ -6,9 +6,9 @@ public class Ex17 {
 
 	public static void main(String[] args) {	
 		Scanner sc = new Scanner(System.in);
-		
 		int[] arr = new int[10];
 		
+		// 배열에 입력한 정수를 넣음
 		for(int i=0; i<10; i++) {
 			System.out.print((i+1) + "번 째 정수 입력 >> ");
 			int num = sc.nextInt();

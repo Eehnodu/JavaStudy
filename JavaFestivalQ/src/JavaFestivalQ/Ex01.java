@@ -10,17 +10,31 @@ public class Ex01 {
 		int now = sc.nextInt();
 		System.out.print("목표 몸무게 : ");
 		int future = sc.nextInt();
-		int num = 1;
-		while(true) {
-			System.out.print(num + "주차 감량 몸무게 : ");
-			num++;
+
+		// 방법1 (while문)
+//		int num = 1;
+//		while(true) {
+//			System.out.print(num + "주차 감량 몸무게 : ");
+//			num++;
+//			int kg = sc.nextInt();
+//			now -= kg;
+//			if(now <= future) {
+//				System.out.println(now + "kg 달성!! 축하합니다!!");
+//				break;
+//			}
+//		}
+		
+		
+		// 방법2 (for문)
+		for(int i = 1; now>future; i++) {
+			System.out.print(i + "주차 감량 몸무게 : ");
 			int kg = sc.nextInt();
-			now = now - kg;
-			if(now <= future) {
-				System.out.println(now + "kg 달성!! 축하합니다!!");
-				break;
+			now -= kg;
+			if(now<=future) {
+				System.out.println(now + "kg 달성!! 축하합니다.");
 			}
 		}
+		
 	}
 
 }

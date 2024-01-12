@@ -12,11 +12,13 @@ public class Bankbook {
 	
 	
 	// 2. Method(행위, 로직, 기능)
-	public void deposit(int num) {
-		money += num;
+	public void deposit(int money) {
+		this.money += money;
+		// this : 현재 클래스 자체를 의마하는 키워드
+		
 	}
-	public void withdraw(int num) {
-		money -= num;
+	public void withdraw(int money) {
+		this.money -= money;
 	}
 	public int showMoney() {
 		return money;
