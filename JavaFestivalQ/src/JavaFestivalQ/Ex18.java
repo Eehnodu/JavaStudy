@@ -16,6 +16,8 @@ public class Ex18 {
 					break;
 				}
 			}
+		}
+		for(int i = 0; i<arr.length; i++) {
 			System.out.println("행운의 숫자 : " + arr[i]);
 		}
 	}

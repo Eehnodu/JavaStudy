@@ -7,7 +7,7 @@ public class Ex10 {
 
 	public static void main(String[] args) {
 		Random ran = new Random();
-		int[] arr = new int[7];
+		int[] arr = new int[8];
 		
 		for(int i =0; i<arr.length; i++) {
 			arr[i] = ran.nextInt(99)+1;
