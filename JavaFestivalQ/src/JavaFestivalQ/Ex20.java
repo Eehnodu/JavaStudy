@@ -12,9 +12,9 @@ public class Ex20 {
 		String result = "";
 		
 		// 10진수는 2로 나누며 나머지를 저장하면 됨
-		while(num>0) {
+		while(num>0) { 
 			// String.valueOf --> 숫자를 문자열로 변경해줌
-			result += (num%2);
+			result += (num%2); 
 			num = num/2;
 		}
 		
