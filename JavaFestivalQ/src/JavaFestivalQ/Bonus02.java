@@ -12,9 +12,11 @@ public class Bonus02 {
 		// substring --> 문자열 자르기 함수
 		// substring(start index, end index)
 		if(str.length()%2==0) {
-			return str.substring(str.length()/2 - 1, str.length()/2 + 1);
+			return str.substring(str.length()/2 - 1, str.length()/2+1);
 		}else {
 			return str.substring(str.length()/2, str.length()/2 + 1);
 		}
+		
+
 	}
 }

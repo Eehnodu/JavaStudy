@@ -17,18 +17,18 @@ public class Bonus05 {
 		}
 		
 		System.out.println("정렬 후");
-		for(int i = 0; i<arr.length-1; i++) {
+		for(int i = 0; i<arr.length; i++) {
 			// 첫번째 배열부터 마지막 배열까지 하나씩 비교하며 순회
 			for(int j = 0; j<arr.length-1; j++) {
 				// 임시로 값을 저장하기 위한 tmp을 선언 후, 저장한 후에 조건이 맞다면 앞과 뒤의 배열을 교체
-				int tmp;
 				if(arr[j] > arr[j+1]) {
-					tmp = arr[j];
+					int tmp = arr[j];
 					arr[j] = arr[j+1];
 					arr[j+1] = tmp;
 				}
 			}
 		}
+		
 		System.out.println(Arrays.toString(arr));
 	}
 
