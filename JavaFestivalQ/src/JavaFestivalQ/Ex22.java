@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Ex22 {
 
 	public static void main(String[] args) {
-		
+
 //		Scanner sc = new Scanner(System.in);
 //		System.out.print("행 개수 : ");
 //		int num = sc.nextInt();
@@ -18,16 +18,15 @@ public class Ex22 {
 //			}
 //			System.out.println();
 //		}
-		
+
 		Scanner sc = new Scanner(System.in);
 		System.out.print("행 개수 : ");
 		int num = sc.nextInt();
-		for(int i = num; i > 0; i--) {
-			for(int j = num; j > 0; j--) {
-				System.out.print(j <= num-i+1 ? "*": " ");
+		for (int i = num; i > 0; i--) {
+			for (int j = num; j > 0; j--) {
+				System.out.print(j <= num - i + 1 ? "*" : " ");
 			}
 			System.out.println();
 		}
 	}
-
 }

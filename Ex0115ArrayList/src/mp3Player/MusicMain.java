@@ -60,7 +60,7 @@ public class MusicMain {
 
 			} else if (input == 4) {
 				System.out.println("======다음곡======");
-				if (i == 4) {
+				if (i == musicList.size() - 1) {
 					System.out.println("가장 마지막 곡입니다.");
 				} else {
 					if (mp3.isPlaying()) {

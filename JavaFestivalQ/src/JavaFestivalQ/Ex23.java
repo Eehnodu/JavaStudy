@@ -15,14 +15,14 @@ public class Ex23 {
 		int[][] orig = new int[n][n];
 		int num = 1;
 		// 원본 배열에 값 넣기
-		for(int i = 0; i<orig.length; i++) {
-			for(int j = 0; j<orig.length; j++) {
+		for(int i = 0; i<n; i++) {
+			for(int j = 0; j<n; j++) {
 				orig[i][j] = num++;
 			}
 		}
 		// 원본 배열 출력
-		for(int i = 0; i<orig.length; i++) {
-			for(int j = 0; j<orig.length; j++) {
+		for(int i = 0; i<n; i++) {
+			for(int j = 0; j<n; j++) {
 				System.out.printf("%4d", orig[i][j]);
 			}
 			System.out.println();
@@ -32,7 +32,7 @@ public class Ex23 {
 		int[][] trans = new int[n][n];
 		num = 1;
 		// 90도 회전 배열 값 넣기
-		for(int i = 0; i<trans.length; i++) {
+		for(int i = 0; i<n; i++) {
 			for(int j = n-1; j>=0; j--) {
 				// trans[n-1][0]부터 n-1이 감소하면서 값을 넣고
 				// for문이 끝나면 i가 1증가하며 다시 n-1이 감소하면서 채움
@@ -41,8 +41,8 @@ public class Ex23 {
 			}
 		}
 		// 90도 회전 배열 출력
-		for(int i = 0; i<trans.length; i++) {
-			for(int j = 0; j<trans.length; j++) {
+		for(int i = 0; i<n; i++) {
+			for(int j = 0; j<n; j++) {
 				System.out.printf("%4d", trans[i][j]);
 			}
 			System.out.println();

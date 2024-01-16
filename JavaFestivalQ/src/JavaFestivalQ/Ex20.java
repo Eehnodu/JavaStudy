@@ -17,6 +17,7 @@ public class Ex20 {
 			num/=2;
 		}
 		
+		// ArrayList 배열의 끝부터 출력
 		for(int i = arr.size()-1; i>=0; i--) {
 			System.out.print(arr.get(i) + " ");
 		}

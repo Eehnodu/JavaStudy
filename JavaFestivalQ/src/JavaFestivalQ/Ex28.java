@@ -10,6 +10,10 @@ public class Ex28 {
 	      System.out.println(to10(str) + "(10)");
 	   }
 	   
+	   
+	   
+	   
+	   
 	   public static int to10(String str) {
 	      
 	      // 문자열과 문자열에 해당하는 각 문자열을 담을 배열 선언
