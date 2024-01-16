@@ -26,7 +26,7 @@ public class Ex28 {
 //	         intarr[i] = Integer.parseInt(strarr[i]);
 //	         // Math.pow --> 제곱을 구하는 함수
 //	         // 를 이용하여 각 배열의 값에 2의 제곱인 값을 곱하고 result에 더함
-//	         result += intarr[i] * (Math.pow(2,intarr.length-i-1));      
+//	         result += intarr[i] * (Math.pow(2,intarr.length-1-i));      
 //	      }
 	      
 	      // 배열의 끝부터 1->2->4->8...처럼 증가하는 제곱승을 곱하는 방법

@@ -1,5 +1,6 @@
 package JavaFestivalQ;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -9,21 +10,16 @@ public class Ex20 {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("숫자입력 >> ");
 		int num = sc.nextInt();
-		String result = "";
+		ArrayList<Integer> arr = new ArrayList<>();
 		
-		// 10진수는 2로 나누며 나머지를 저장하면 됨
-		while(num>0) { 
-			// String.valueOf --> 숫자를 문자열로 변경해줌
-			result += (num%2); 
-			num = num/2;
+		while(num>0) {
+			arr.add(num%2);
+			num/=2;
 		}
 		
-		String reverse = "";
-		for(int i = result.length()-1; i>=0; i--) {
-			reverse += result.charAt(i) + " ";
+		for(int i = arr.size()-1; i>=0; i--) {
+			System.out.print(arr.get(i) + " ");
 		}
-		
-		System.out.println(reverse);
 	}
 
 }
