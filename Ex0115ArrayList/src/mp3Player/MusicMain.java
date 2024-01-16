@@ -74,6 +74,9 @@ public class MusicMain {
 
 			} else if (input == 5) {
 				System.out.println("======종료======");
+				if (mp3.isPlaying()) {
+					mp3.stop();
+				}
 				break;
 			} else {
 				System.out.println("번호를 잘못누르셨습니다.");
