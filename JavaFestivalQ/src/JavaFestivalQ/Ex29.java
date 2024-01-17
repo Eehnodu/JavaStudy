@@ -12,8 +12,8 @@ public class Ex29 {
 		
 		int fail = 0;
 		while(true) {
-			int ranNum1 = ran.nextInt(9);
-			int ranNum2 = ran.nextInt(9);
+			int ranNum1 = ran.nextInt(10);
+			int ranNum2 = ran.nextInt(10);
 			int correctAnswer = ranNum1 + ranNum2;
 			System.out.print(ranNum1 + " + " + ranNum2 + " = " );
 			int userAnswer = sc.nextInt();

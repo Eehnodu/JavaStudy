@@ -1,5 +1,6 @@
 package JavaFestivalQ;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Ex28 {
@@ -8,6 +9,18 @@ public class Ex28 {
 	      String str = "01001111";
 	      System.out.print(str +"(2) = ");
 	      System.out.println(to10(str) + "(10)");
+	      
+	      ArrayList<Character> arr = new ArrayList<>();
+	      for(int i = 0; i<str.length(); i++) {
+	    	  arr.add(str.charAt(i));
+	      }
+	      
+	      int sum = 0, count = 1;
+	      for(int i = arr.size()-1; i>=0 ;i-- ) {
+	    	  sum += ((int)arr.get(i) - 48) * count;
+	    	  count *= 2;
+	      }
+	      System.out.println(sum);
 	   }
 	   
 	   
