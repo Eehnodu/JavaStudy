@@ -6,14 +6,16 @@ public class GameMain {
 		Pokemon p = new Pokemon();
 		Mario m = new Mario();
 		Zelda z = new Zelda();
+		Dongmul d = new Dongmul();
 		
 		insert(p);
 		insert(m);
 		insert(z);
+		insert(d);
 		
 	}
 	
-	private static void insert(Pokemon game) {
+	private static void insert(GameChip game) {
 		game.gameStart();
 	}
 
