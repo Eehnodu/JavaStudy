@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.MemberDAO;
@@ -64,147 +65,51 @@ public class main {
 				System.out.print("비밀번호 입력 : ");
 				String pw = sc.next();
 
-				Connection conn = null;
-				PreparedStatement psmt = null;
-				ResultSet rs = null;
+				MemberDAO dao = new MemberDAO();
+				MemberDTO dto = dao.login(id, pw);
 
-				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					String url = "jdbc:mysql://localhost/jdbctest";
-					String user = "root";
-					String password = "12345";
-
-					conn = DriverManager.getConnection(url, user, password);
-
-					if (conn != null) {
-						System.out.println("DB 연결 성공");
-					} else {
-						System.out.println("DB 연결 실패");
-					}
-
-					String sql = "SELECT * FROM JDBCTEST.BIGDATAMEMBER WHERE ID = ? AND PW = ? ";
-
-					psmt = conn.prepareStatement(sql);
-
-					psmt.setString(1, id);
-					psmt.setString(2, pw);
-
-					rs = psmt.executeQuery();
-
-					if (rs.next() == true) {
-						String name = rs.getString("b_name");
-						int age = rs.getInt("age");
-						System.out.println(name + "(" + age + ")님 환영합니다.");
-					} else {
-						System.out.println("로그인에 실패했습니다.");
-						System.out.println("아이디와 비밀번호를 확인해주세요");
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						if (rs != null)
-							rs.close();
-						if (psmt != null)
-							psmt.close();
-						if (conn != null)
-							conn.close();
-
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+				// 성공
+				if (dto != null) {
+					System.out.println(dto.getName() + "(" + dto.getAge() + ")님 환영합니다.");
 				}
+				// 실패
+				else {
+					System.out.println("로그인에 실패했습니다.");
+					System.out.println("아이디와 비밀번호를 확인해주세요");
+				}
+
 			} else if (choice == 3) {
 
 				System.out.print("탈퇴할 ID 입력 : ");
 				String id = sc.next();
 				System.out.print("탈퇴할 ID의 PW 입력 : ");
 				String pw = sc.next();
+				MemberDAO dao = new MemberDAO();
+				int row = dao.delete(id, pw);
 
-				Connection conn = null;
-				PreparedStatement psmt = null;
-
-				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
-
-					String url = "jdbc:mysql://localhost/jdbctest";
-					String user = "root";
-					String password = "12345";
-
-					conn = DriverManager.getConnection(url, user, password);
-
-					String sql = "DELETE FROM JDBCTEST.BIGDATAMEMBER WHERE ID = ? AND PW = ? ";
-
-					psmt = conn.prepareStatement(sql);
-					psmt.setString(1, id);
-					psmt.setString(2, pw);
-
-					int row = psmt.executeUpdate();
-
-					if (row > 0) {
-						System.out.println("가지마세요..."); // 탈퇴 성공
-					} else {
-						System.out.println("어딜도망가"); // 탈퇴 실패
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						if (psmt != null)
-							psmt.close();
-						if (conn != null)
-							conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+				if (row > 0) {
+					System.out.println("가지마세요..."); // 탈퇴 성공
+				} else {
+					System.out.println("어딜도망가"); // 탈퇴 실패
 				}
 
 			} else if (choice == 4) {
-				Connection conn = null;
-				PreparedStatement psmt = null;
-				ResultSet rs = null;
-				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					String url = "jdbc:mysql://localhost/jdbctest";
-					String user = "root";
-					String password = "12345";
+				System.out.println("=======전체 회원 조회=======");
+				System.out.println("랭킹\tID\t이름\t나이\t점수");
 
-					conn = DriverManager.getConnection(url, user, password);
-
-					String sql = "SELECT * FROM JDBCTEST.BIGDATAMEMBER";
-					psmt = conn.prepareStatement(sql);
-					rs = psmt.executeQuery();
-
-					System.out.println("=======전체 회원 조회=======");
-					System.out.println("ID\t이름\t나이\t점수");
-
-					while (rs.next()) {
-						String id = rs.getString("id");
-						String name = rs.getString("b_name");
-						int age = rs.getInt("age");
-						int score = rs.getInt("score");
-						System.out.println(id + "\t" + name + "\t" + age + "\t" + score);
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						if (rs != null)
-							rs.close();
-						if (psmt != null)
-							psmt.close();
-						if (conn != null)
-							conn.close();
-
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-
+				MemberDAO dao = new MemberDAO();
+				ArrayList<MemberDTO> arr = dao.selectAll();
+				
+				for (int i = 0; i < arr.size(); i++) {
+					System.out.println(i+1 + "\t" + arr.get(i).getId() + "\t" + arr.get(i).getName() + "\t" + arr.get(i).getId()
+							+ "\t" + arr.get(i).getScore());
 				}
-
+				
+//				for(MemberDTO dto : arr) {
+//					System.out.println(dto.getId() + "\t" + dto.getName() + "\t" + dto.getId()
+//							+ "\t" + dto.getScore());
+//				}
+				
 			} else if (choice == 5) {
 				System.out.println("==== 회원정보 수정 ====");
 				System.out.print("ID 입력 : ");
@@ -212,47 +117,20 @@ public class main {
 				System.out.print("PW 입력 : ");
 				String pw = sc.next();
 				System.out.print("수정할 점수 입력 : ");
-				int nScore = sc.nextInt();
+				int score = sc.nextInt();
 
-				Connection conn = null;
-				PreparedStatement psmt = null;
-				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
+				MemberDAO dao = new MemberDAO();
+				MemberDTO dto = new MemberDTO(score, id, pw);
+				int row = dao.update(dto);
 
-					String url = "jdbc:mysql://localhost/jdbctest";
-					String user = "root";
-					String password = "12345";
-
-					conn = DriverManager.getConnection(url, user, password);
-
-					String sql = "UPDATE JDBCTEST.BIGDATAMEMBER SET SCORE = ? WHERE ID =? AND PW =?";
-					psmt = conn.prepareStatement(sql);
-					psmt.setInt(1, nScore);
-					psmt.setString(2, id);
-					psmt.setString(3, pw);
-
-					int row = psmt.executeUpdate();
-					if (row > 0) {
-						System.out.println("점수 수정이 완료되었습니다.");
-					} else {
-						System.out.println("점수 수정 실패");
-						System.out.println("아이디나 비밀번호를 다시 확인해주세요");
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						if (psmt != null)
-							psmt.close();
-						if (conn != null)
-							conn.close();
-
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+				if (row > 0) {
+					System.out.println("점수 수정이 완료되었습니다.");
+				} else {
+					System.out.println("점수 수정 실패");
+					System.out.println("아이디나 비밀번호를 다시 확인해주세요");
 				}
 			} else {
+				System.out.println("종료되었습니다.");
 				break;
 			}
 		}
