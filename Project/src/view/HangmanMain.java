@@ -54,7 +54,7 @@ public class HangmanMain {
 						// 상 게임 실행
 						break; // 올바른 입력이면 루프를 빠져나감
 					} else {
-						System.out.println("숫자를 잘못 입력하였습니다. 다시 선택해주세요.");
+						System.out.println("숫자를 잘못 입력하였습니다. 다시 선택해주세요."); 
 					}
 				}
 				// 행맨 게임 실행
