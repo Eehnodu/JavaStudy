@@ -33,12 +33,12 @@ public class HangmanMain {
 		// 메인화면
 		while (isRunning) {
 			// 게임 시작 BGM
+			dao.startBgm();
 			System.out.print("[1]로그인 [2]회원가입 [3]회원탈퇴 [4]랭킹조회 [5]종료 >> ");
 			int choice = sc.nextInt();
 
 			if (choice == 1) {
 				// 로그인 처리
-				dao.startBgm();
 				System.out.println("로그인을 수행합니다.");
 				System.out.print("ID 입력 : ");
 				String id = sc.next();
@@ -141,7 +141,9 @@ public class HangmanMain {
 				// 종료 처리
 				System.out.println("게임이 종료되었습니다.");
 				isRunning = false;//
+				System.exit(0);
 				break;
+				
 			} else {
 				// 숫자를 잘못 입력 했을 시
 				System.out.println("숫자를 잘못 입력하였습니다. 다시 선택해주세요.");
