@@ -32,7 +32,7 @@ public class HangmanMain {
 
 		// 메인화면
 		while (isRunning) {
-			// 게임 시작 BGM
+			// 게임 시작 BGM 
 			dao.startBgm();
 			System.out.print("[1]로그인 [2]회원가입 [3]회원탈퇴 [4]랭킹조회 [5]종료 >> ");
 			int choice = sc.nextInt();
@@ -66,21 +66,48 @@ public class HangmanMain {
 						System.out.println("게임 난이도 선택 및 뒤로가기");
 						System.out.print("[1]하 [2]중 [3]상 [4]뒤로가기 >> ");
 						int nan = sc.nextInt();
+						
+						// 행맨게임의 결과를 저장할 변수 선언
+						int score = 0;
 
 						// 하 게임 실행
 						if (nan == 1) {
 							// 하 난이도의 행맨게임 실행
-							int score = dao.hangmangame(lList);
+							score = dao.hangmangame(lList);
+							int scorerow = dao.updateScore(dto, score);
+							if (scorerow > 0) {
+								System.out.println("점수 갱신");
+							}
+							int viprow = dao.updateVip(dto);
+							if (viprow > 0) {
+								System.out.println("등급 갱신");
+							}
 						}
 						// 중 게임 실행
 						else if (nan == 2) {
 							// 중 난이도의 행맨게임 실행
-							int score = dao.hangmangame(mList);
+							score = dao.hangmangame(mList);
+							int scorerow = dao.updateScore(dto, score);
+							if (scorerow > 0) {
+								System.out.println("점수 갱신");
+							}
+							int viprow = dao.updateVip(dto);
+							if (viprow > 0) {
+								System.out.println("등급 갱신");
+							}
 						}
 						// 상 게임 실행
 						else if (nan == 3) {
 							// 상 난이도의 행맨게임 실행
-							int score = dao.hangmangame(hList);
+							score = dao.hangmangame(hList);
+							int scorerow = dao.updateScore(dto, score);
+							if (scorerow > 0) {
+								System.out.println("점수 갱신");
+							}
+							int viprow = dao.updateVip(dto);
+							if (viprow > 0) {
+								System.out.println("등급 갱신");
+							}
 
 						} else if (nan == 4) {
 							System.out.println("뒤로 가기를 선택했습니다. 메인 메뉴로 돌아갑니다.");
@@ -141,7 +168,6 @@ public class HangmanMain {
 				// 종료 처리
 				System.out.println("게임이 종료되었습니다.");
 				isRunning = false;//
-				System.exit(0);
 				break;
 				
 			} else {

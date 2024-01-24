@@ -98,11 +98,13 @@ public class HangmanDAO {
 			rs = psmt.executeQuery();
 
 			if (rs.next() == true) {
-				String name = rs.getString("nickname");
-				String vip = rs.getString("vip");
-				int score = rs.getInt("score");
+				String Id = rs.getString("id");
+				String Pw = rs.getString("pw");
+				String Name = rs.getString("nickname");
+				String Vip = rs.getString("vip");
+				int Score = rs.getInt("score");
 
-				dto = new HangmanDTO(null, null, name, score, vip);
+				dto = new HangmanDTO(id, pw, Name, Score, Vip);
 			}
 
 		} catch (Exception e) {
@@ -162,19 +164,30 @@ public class HangmanDAO {
 	}
 
 	// 접수 업데이트 메소드
-	public int updateScore(HangmanDTO dto) {
+	public int updateScore(HangmanDTO dto, int score) {
 		int row = 0;
 		try {
 			getConnection();
-
-			String sql = "UPDATE hangman.user SET SCORE = ? WHERE ID =? AND PW =?";
+			String sql = "SELECT * FROM hangman.user WHERE id = ? AND pw = ?";
 			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getId());
+			psmt.setString(2, dto.getPw());
+			rs = psmt.executeQuery();
 
-			psmt.setInt(1, dto.getScore());
-			psmt.setString(2, dto.getId());
-			psmt.setString(3, dto.getPw());
+			if (rs.next()) {
+				// 사용자가 존재할 경우에만 업데이트 실행
+				int currentScore = rs.getInt("score");
+				int updatedScore = currentScore + score;
 
-			row = psmt.executeUpdate();
+				// 점수 업데이트
+				String updateSql = "UPDATE hangman.user SET score = ? WHERE id = ? AND pw = ?";
+				psmt = conn.prepareStatement(updateSql);
+				psmt.setInt(1, updatedScore);
+				psmt.setString(2, dto.getId());
+				psmt.setString(3, dto.getPw());
+				row = psmt.executeUpdate();
+
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -186,17 +199,33 @@ public class HangmanDAO {
 	// 등급 업데이트 메소드
 	public int updateVip(HangmanDTO dto) {
 		int row = 0;
+		String vip = "";
 		try {
 			getConnection();
-
-			String sql = "UPDATE hangman.user SET VIP = ? WHERE ID =? AND PW =?";
+			String sql = "SELECT * FROM hangman.user WHERE id = ? AND pw = ?";
 			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getId());
+			psmt.setString(2, dto.getPw());
+			rs = psmt.executeQuery();
 
-			psmt.setString(1, dto.getVip());
-			psmt.setString(2, dto.getId());
-			psmt.setString(3, dto.getPw());
-
-			row = psmt.executeUpdate();
+			if (rs.next()) {
+				int score = rs.getInt("score");
+				if (score < 100) {
+					vip = "Bronze";
+				} else if (score >= 100 && score < 200) {
+					vip = "Silver";
+				} else if (score >= 200 && score < 300) {
+					vip = "Gold";
+				} else if (score >= 300) {
+					vip = "G.O.A.T";
+				}
+				String sql2 = "update hangman.user set vip = ? where id = ? and pw = ?";
+				psmt = conn.prepareStatement(sql2);
+				psmt.setString(1, vip);
+				psmt.setString(2, dto.getId());
+				psmt.setString(3, dto.getPw());
+				row = psmt.executeUpdate();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -391,7 +420,6 @@ public class HangmanDAO {
 			}
 			// 알파벳를 맞추지 못했다면 found가 false로 바뀌며 count값 증가
 			if (!found) {
-				errorBgm();
 				count++;
 			}
 			// count가 6을 넘어가면 행맨 종료
@@ -410,16 +438,13 @@ public class HangmanDAO {
 
 			// count가 2,4,6일 때 힌트 출력
 			if (count >= 2) {
-				System.out.print("\n 힌트 : ");
-				System.out.println(t.get(num).getHint1());
+				System.out.print("\n 힌트1 : " + t.get(num).getHint1() + "\t");
 			}
 			if (count >= 4) {
-				System.out.print("\n 힌트 : ");
-				System.out.println(t.get(num).getHint2());
+				System.out.print(" 힌트2 : " + t.get(num).getHint2() + "\t");
 			}
 			if (count == 6) {
-				System.out.print("\n 힌트 : ");
-				System.out.println(t.get(num).getHint3());
+				System.out.print(" 힌트3 : " + t.get(num).getHint3() + "\t");
 			}
 			// 행맨 그리기
 			switch (count) {
@@ -459,6 +484,9 @@ public class HangmanDAO {
 
 	// 알파벳이 틀렸을 경우 BGM
 	public void errorBgm() {
+		if (mp3.isPlaying()) {
+			mp3.stop();
+		}
 		mp3.play(comPath + "error.mp3");
 	}
 
@@ -472,6 +500,9 @@ public class HangmanDAO {
 
 	// 정답을 못 맞췄을 경우 BGM
 	public void sreamBgm() {
+		if (mp3.isPlaying()) {
+			mp3.stop();
+		}
 		mp3.play(comPath + "scream.mp3");
 	}
 
@@ -483,7 +514,7 @@ public class HangmanDAO {
 		mp3.play(comPath + "success.mp3");
 	}
 
-	// 0. 머리
+	// 0. 고리
 	public void hang() {
 		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀  ⠀");
 		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ⠀⠀⠀⠀");
