@@ -8,7 +8,6 @@
     <fullyQualifiedTypeName name="ArrayList.Student"/>
     <fullyQualifiedTypeName name="javazoom.jl.player.MP3Player"/>
     <fullyQualifiedTypeName name="MVC.MusicController"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.nio.file.spi.FileSystemProvider"/>
     <fullyQualifiedTypeName name="인터페이스.Temp"/>
@@ -22,7 +21,17 @@
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
-    <fullyQualifiedTypeName name="model.MemberDAO"/>
+    <fullyQualifiedTypeName name="java.util.jar.Attributes.Name"/>
     <fullyQualifiedTypeName name="model.MemberDTO"/>
+    <fullyQualifiedTypeName name="com.mysql.cj.protocol.Resultset"/>
+    <fullyQualifiedTypeName name="model.MemberDAO"/>
+    <fullyQualifiedTypeName name="Question4.MobilePhone"/>
+    <fullyQualifiedTypeName name="Question4.CameraPhone"/>
+    <fullyQualifiedTypeName name="Question4.SmartPhone"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="Question6.MusicVO"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.GenericSignatureFormatError"/>
+    <fullyQualifiedTypeName name="model.HangmanDAO"/>
+    <fullyQualifiedTypeName name="model.HangmanDTO"/>
 </qualifiedTypeNameHistroy>
