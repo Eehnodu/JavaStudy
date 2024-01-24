@@ -10,47 +10,35 @@ import model.HighWordDTO;
 import model.LowWordDTO;
 import model.MidWordDTO;
 
+import javazoom.jl.player.MP3Player;
+
 public class HangmanMain {
 
 	public static void main(String[] args) {
+		boolean logincheck = false;
 		Scanner sc = new Scanner(System.in);
 		Random ran = new Random();
 		HangmanDAO dao = new HangmanDAO();
 		ArrayList<LowWordDTO> lList = dao.lWordsAll();
 		ArrayList<MidWordDTO> mList = dao.mWordsAll();
 		ArrayList<HighWordDTO> hList = dao.hWordsAll();
-
+		
+		String comPath = "C:\\Users\\smhrd\\Desktop\\JavaStudy\\Project\\player\\";
+		MP3Player mp3 = new MP3Player();
+		
 		System.out.println("===========행맨 게임을 시작합니다!!===========");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠚⠒⠓⠚⠲⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡄⠖⠧⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠁⠀⠀⢈⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡀⠀⢀⡴⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣻⠉⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣪⣀⡠⡤⠤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀ ");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡪⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⢨⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⢇⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⢐⠅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠔⠉⠀⠀⠙⢢⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀   ⠰⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠓⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀ ");
-		System.out.println("⠀⠀⠀      ⠀⢘⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠀ ⠀");
-		System.out.println("⠀⠀⠐⠒⠒⠒⠒⠒⠒⠒⠚⠒⠒⠖⠖⠔⠤⠢⠔⠔⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀ ⠀⠀");
-		System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀ ");
-		System.out.println("⠀⠀ ⡀⠀ ⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀    ");
-		System.out.println("⠀⠀⠀⢸⡀⣀⠇⠀⠀⠀⢀⠶⡀⠀⠀⢀⡀⠀⡆⠀⠀⠀⠀⠀⠀⠀⠀ ⢠⣆⣰⡄⠀⠀ ⢀⣤⡀⠀⠀⠀ ⢠⣄⠀⢸⠀⠀");
-		System.out.println("⠀⠀⠀⣸⠍⠈⡇⠀⠀⢠⠏⠉⢧⠀⠀⢸⠱⣄⡇⠀⠀⠀⠀⠀⠀ ⠀⠀⡕⠈⠁⡇⠀⠀ ⡼⠒⡆⠀ ⠀ ⢸⠈⠣⡼⠀⠀");
-		System.out.println("⠀⠀⠀⣀⣀⣀⣀⣀⠀⣀⣀⣀⣀⠀ ⢈⣀⣀⣈⣁⠀⣀⣀⣀⣀⠀ ⣀⣀⣀⣀⠀ ⣘⣀⣀⣀⡀⠀⢀⣀⣀⣀⣀⠀");
-
-		// 시작 bgm 설정
-		dao.startBgm();
+		dao.hangmanimage();
+		boolean isRunning = true;
 
 		// 메인화면
-		while (true) {
+		while (isRunning) {
+			// 게임 시작 BGM
 			System.out.print("[1]로그인 [2]회원가입 [3]회원탈퇴 [4]랭킹조회 [5]종료 >> ");
 			int choice = sc.nextInt();
 
 			if (choice == 1) {
 				// 로그인 처리
+				dao.startBgm();
 				System.out.println("로그인을 수행합니다.");
 				System.out.print("ID 입력 : ");
 				String id = sc.next();
@@ -58,7 +46,7 @@ public class HangmanMain {
 				String pw = sc.next();
 
 				HangmanDTO dto = dao.login(id, pw);
-				boolean logincheck = false; // 로그인이 되었는지 확인할 함수
+				logincheck = false; // 로그인이 되었는지 확인할 함수
 
 				// 성공
 				if (dto != null) {
@@ -69,6 +57,7 @@ public class HangmanMain {
 				else {
 					System.out.println("로그인에 실패했습니다.");
 					System.out.println("아이디와 비밀번호를 확인해주세요");
+					logincheck = false;
 				}
 
 				if (logincheck == true) {
@@ -95,12 +84,12 @@ public class HangmanMain {
 
 						} else if (nan == 4) {
 							System.out.println("뒤로 가기를 선택했습니다. 메인 메뉴로 돌아갑니다.");
+							logincheck = false;
 							break;
 						} else {
 							System.out.println("숫자를 잘못 입력하였습니다. 다시 선택해주세요.");
 						}
 					}
-					// 행맨 게임 실행
 				}
 			} else if (choice == 2) {
 				// 회원가입 처리
@@ -148,18 +137,17 @@ public class HangmanMain {
 					System.out.println(i + 1 + "\t" + arr.get(i).getNickname() + "\t" + arr.get(i).getVip() + "\t"
 							+ arr.get(i).getScore());
 				}
-
 			} else if (choice == 5) {
 				// 종료 처리
 				System.out.println("게임이 종료되었습니다.");
-				dao.endBgm();
+				isRunning = false;//
 				break;
 			} else {
 				// 숫자를 잘못 입력 했을 시
 				System.out.println("숫자를 잘못 입력하였습니다. 다시 선택해주세요.");
 			}
 		}
-
-		sc.close();
+		dao.endBgm();
+		
 	}
 }
