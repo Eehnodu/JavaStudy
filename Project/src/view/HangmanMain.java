@@ -33,6 +33,7 @@ public class HangmanMain {
 
 			if (choice == 1) {
 				// 로그인 처리
+				System.out.println();
 				System.out.println("|==========로그인을 수행합니다==========|");
 				System.out.print(" ID 입력 : ");
 				String id = sc.next();
@@ -46,7 +47,7 @@ public class HangmanMain {
 
 				// 성공
 				if (dto != null) {
-					System.out.println(" (づ￣ 3￣)づ[" + dto.getNickname() + "(" + dto.getVip() + ")](づ￣ 3￣)づ");
+					System.out.println(" ╰(*°▽°*)╯[" + dto.getNickname() + "(" + dto.getVip() + ")]╰(*°▽°*)╯");
 					System.out.println("      (￣┰￣*)[" + dto.getScore() + "점](￣┰￣*)");
 					System.out.println();
 					logincheck = true;
@@ -63,8 +64,9 @@ public class HangmanMain {
 					while (true) {
 						// 기회 count 선언언 및 초기화
 						System.out.println("|=========난이도선택 및 로그아웃=========|");
-						System.out.print("[1]하 [2]중 [3]상 [4]뒤로가기 >> ");
+						System.out.print(" [1]하 [2]중 [3]상 [4]뒤로가기 >> ");
 						int nan = sc.nextInt();
+						System.out.println();
 
 						// 행맨게임의 결과를 저장할 변수 선언
 						int score = 0;
@@ -75,7 +77,8 @@ public class HangmanMain {
 							score = dao.hangmangame(lList);
 							dao.updateScore(dto, score);
 							dao.updateVip(dto);
-							System.out.println(score + "점을 획득했습니다!");
+							System.out.println(" " + score + "점을 획득했습니다!ヾ(^▽^*)))");
+							System.out.println();
 						}
 						// 중 게임 실행
 						else if (nan == 2) {
@@ -83,8 +86,8 @@ public class HangmanMain {
 							score = dao.hangmangame(mList);
 							dao.updateScore(dto, score);
 							dao.updateVip(dto);
-							System.out.println(score + "점을 획득했습니다!");
-
+							System.out.println(" " + score + "점을 획득했습니다!ヾ(^▽^*)))");
+							System.out.println();
 						}
 						// 상 게임 실행
 						else if (nan == 3) {
@@ -92,14 +95,15 @@ public class HangmanMain {
 							score = dao.hangmangame(hList);
 							dao.updateScore(dto, score);
 							dao.updateVip(dto);
-							System.out.println(score + "점을 획득했습니다!");
+							System.out.println(score + "점을 획득했습니다!ヾ(^▽^*)))");
+							System.out.println();
 
 						} else if (nan == 4) {
 							System.out.println("\n[뒤로 가기를 선택했습니다. 메인 메뉴로 돌아갑니다]\n");
 							logincheck = false;
 							break;
 						} else {
-							System.out.println("※ 숫자를 잘못 입력하였습니다. 다시 선택해주세요.");
+							System.out.println("╰（‵□′）╯ 숫자를 잘못 입력하였습니다. 다시 선택해주세요. ╰（‵□′）╯");
 						}
 					}
 				}
@@ -120,10 +124,10 @@ public class HangmanMain {
 				int row = dao.join(dto);
 
 				if (row > 0) {
-					System.out.println(" ★ 회원가입 성공 ★ ");
+					System.out.println(" (☞ﾟヮﾟ)☞ 회원가입 성공 ☜(ﾟヮﾟ☜) ");
 					System.out.println();
 				} else {
-					System.out.println(" ★ 회원가입 실패 ★ ");
+					System.out.println(" ಥ_ಥ 회원가입 실패 ಥ_ಥ ");
 					System.out.println();
 				}
 
@@ -131,19 +135,19 @@ public class HangmanMain {
 				// 회원탈퇴 처리
 				System.out.println();
 				System.out.println("|=========회원탈퇴를 수행합니다=========|");
-				System.out.print(" 탈퇴할 ID 입력 : ");
+				System.out.print("┌( ಠ_ಠ)┘ 탈퇴할 ID 입력 : ┌( ಠ_ಠ)┘");
 				String id = sc.next();
-				System.out.print(" 탈퇴할 ID의 PW 입력 : ");
+				System.out.print("(ノ｀Д)ノ 탈퇴할 ID의 PW 입력 : (ノ｀Д)ノ");
 				String pw = sc.next();
 				System.out.println("|================================|");
 				System.out.println();
 				int row = dao.delete(id, pw);
 
 				if (row > 0) {
-					System.out.println(" ※ 계정이 탈퇴되었습니다."); // 탈퇴 성공
+					System.out.println(" ಥ_ಥ 계정이 탈퇴되었습니다. ಥ_ಥ"); // 탈퇴 성공
 					System.out.println();
 				} else {
-					System.out.println(" ※ ID와 PW를 다시 확인해주세요"); // 탈퇴 실패
+					System.out.println(" ಥ_ಥ ID와 PW를 다시 확인해주세요 ಥ_ಥ"); // 탈퇴 실패
 					System.out.println();
 				}
 
@@ -165,14 +169,14 @@ public class HangmanMain {
 			} else if (choice == 5) {
 				// 종료 처리
 				System.err.println();
-				System.out.println(" ※ 게임이 종료되었습니다.");
+				System.out.println(" (ﾉ*ФωФ)ﾉ 게임이 종료되었습니다. (ﾉ*ФωФ)ﾉ");
 				isRunning = false;//
 				break;
 
 			} else {
 				// 숫자를 잘못 입력 했을 시
 				System.out.println();
-				System.out.println(" ※ 숫자를 잘못 입력하였습니다. 다시 선택해주세요.");
+				System.out.println("  ಥ_ಥ 숫자를 잘못 입력하였습니다. 다시 선택해주세요.  ಥ_ಥ");
 			}
 		}
 		dao.endBgm();

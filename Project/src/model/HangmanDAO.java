@@ -348,7 +348,7 @@ public class HangmanDAO {
 		for (int i = 0; i < arr.length; i++) {
 			System.out.print(" _ ");
 		}
-
+		System.out.println();
 		// 입력한 알파벳을 저장할 배열
 		ArrayList<Character> insertArr = new ArrayList<>();
 
@@ -365,6 +365,7 @@ public class HangmanDAO {
 			}
 		}
 
+		System.out.println();
 		hang(); // 사형대 그리기
 
 		// 행맨 게임(알파벳 맞추기)
@@ -374,7 +375,7 @@ public class HangmanDAO {
 			boolean allNotNull = true; // 알파벳을 전부 맞췄을 시 확인하기 위한 변수
 
 			// 한글자의 알파벳 입력
-			System.out.print("\n알파벳을 입력해 주세요 >> ");
+			System.out.print(" 알파벳을 입력해 주세요 >> ");
 			char alpa = sc.next().charAt(0);
 
 			// 알파벳이 아닌 다른 걸 입력시 다시 실행
@@ -386,7 +387,7 @@ public class HangmanDAO {
 					break;
 
 				} else {
-					System.out.println("다시 입력해주세요."); // 알파벳이 아닌 다른 걸 입력시 다시 입력 받음
+					System.out.println(" (ノ｀Д)ノ다시 입력해 주세요"); // 알파벳이 아닌 다른 걸 입력시 다시 입력 받음
 					System.out.print("\n알파벳을 입력해 주세요 >> ");
 					alpa = sc.next().charAt(0);
 				}
@@ -397,7 +398,7 @@ public class HangmanDAO {
 				for (int i = 0; i < insertArr.size(); i++) {
 					if (i >= 1) {
 						if (insertArr.get(i - 1) == alpa) {
-							System.out.println("입력한 알파벳입니다.");
+							System.out.println(" (╬▔皿▔)╯입력한 알파벳 입니다");
 							insertArr.remove(insertArr.size() - 1);
 							found = true;
 						}
@@ -424,6 +425,7 @@ public class HangmanDAO {
 					}
 				}
 			}
+			System.out.println();
 			System.out.println();
 			// 한번 고른 것은 ★ 모양으로 바꿔줌
 			for (int i = 0; i < alpaArr.length; i++) {
@@ -462,7 +464,7 @@ public class HangmanDAO {
 					score = 80 + (6 - count) * 30;
 				}
 				successBgm();
-				System.out.println("\n행맨을 살리셨습니다. 축하합니다.");
+				System.out.println("\n (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧행맨을 살렸습니다\n");
 				break;
 			}
 			// 알파벳를 맞추지 못했다면 count값 증가
@@ -471,13 +473,12 @@ public class HangmanDAO {
 			}
 			// count가 6을 넘어가면 행맨 종료
 			if (count > 6) {
-				System.out.println("행맨을 살리지 못했습니다.\n정답은");
-				System.out.print("[");
+				System.out.println("\n (;´༎ຶД༎ຶ`)행맨을 살리지 못했습니다.\n\n (～￣▽￣)～정답은");
+				System.out.print(" [");
 				for (char ch : arr) {
 					System.out.print(" " + ch + " ");
 				}
 				System.out.println("]");
-				System.out.println("뜻 : " + t.get(num).getMeans());
 				System.out.println();
 				sreamBgm();
 				break;
