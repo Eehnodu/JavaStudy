@@ -178,9 +178,6 @@ public class HangmanDAO {
 				// 사용자가 존재할 경우에만 업데이트 실행
 				int currentScore = rs.getInt("score");
 				int updatedScore = currentScore + score;
-				if (currentScore != updatedScore) {
-					System.out.println("점수 갱신!");
-				}
 
 				// 점수 업데이트
 				String updateSql = "UPDATE cgi_23K_BIG23_p1_4.user SET score = ? WHERE id = ? AND pw = ?";
@@ -214,21 +211,26 @@ public class HangmanDAO {
 			if (rs.next()) {
 				int score = rs.getInt("score");
 				String Vip = rs.getString("vip");
+				if (score < 200) {
+					vip = "Bronze";
+					if (Vip != vip) {
+						vip = "Bronze";
+					}
 
-				if (score >= 200 && score < 400) {
+				} else if (score >= 200 && score < 400) {
 					vip = "Silver";
 					if (Vip != vip) {
-						System.out.println("Silver 등급 갱신");
+						vip = "Silver";
 					}
 				} else if (score >= 400 && score < 700) {
 					vip = "Gold";
 					if (Vip != vip) {
-						System.out.println("Gold 등급 갱신");
+						vip = "Gold";
 					}
-				} else if (score >= 1000) {
+				} else if (score >= 700) {
 					vip = "GOAT";
 					if (Vip != vip) {
-						System.out.println("G.O.A.T 등급 갱신");
+						vip = "GOAT";
 					}
 				}
 				String sql2 = "update cgi_23K_BIG23_p1_4.user set vip = ? where id = ? and pw = ?";
@@ -464,7 +466,7 @@ public class HangmanDAO {
 				break;
 			}
 			// 알파벳를 맞추지 못했다면 count값 증가
-			if (!found ) {
+			if (!found) {
 				count++;
 			}
 			// count가 6을 넘어가면 행맨 종료

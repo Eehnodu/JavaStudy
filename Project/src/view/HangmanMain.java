@@ -28,6 +28,7 @@ public class HangmanMain {
 
 		System.out.println("===========행맨 게임을 시작합니다!!===========");
 		dao.hangmanimage();
+		System.out.println();
 		boolean isRunning = true;
 
 		// 메인화면
@@ -76,6 +77,7 @@ public class HangmanMain {
 							score = dao.hangmangame(lList);
 							int scorerow = dao.updateScore(dto, score);
 							int viprow = dao.updateVip(dto);
+							System.out.println(score + "점을 획득했습니다!");
 						}
 						// 중 게임 실행
 						else if (nan == 2) {
@@ -83,6 +85,8 @@ public class HangmanMain {
 							score = dao.hangmangame(mList);
 							int scorerow = dao.updateScore(dto, score);
 							int viprow = dao.updateVip(dto);
+							System.out.println(score + "점을 획득했습니다!");
+							
 						}
 						// 상 게임 실행
 						else if (nan == 3) {
@@ -90,6 +94,7 @@ public class HangmanMain {
 							score = dao.hangmangame(hList);
 							int scorerow = dao.updateScore(dto, score);
 							int viprow = dao.updateVip(dto);
+							System.out.println(score + "점을 획득했습니다!");
 
 						} else if (nan == 4) {
 							System.out.println("뒤로 가기를 선택했습니다. 메인 메뉴로 돌아갑니다.");
