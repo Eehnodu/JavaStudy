@@ -178,10 +178,10 @@ public class HangmanDAO {
 				// 사용자가 존재할 경우에만 업데이트 실행
 				int currentScore = rs.getInt("score");
 				int updatedScore = currentScore + score;
-				if(currentScore != updatedScore) {
+				if (currentScore != updatedScore) {
 					System.out.println("점수 갱신!");
 				}
-				
+
 				// 점수 업데이트
 				String updateSql = "UPDATE cgi_23K_BIG23_p1_4.user SET score = ? WHERE id = ? AND pw = ?";
 				psmt = conn.prepareStatement(updateSql);
@@ -213,25 +213,21 @@ public class HangmanDAO {
 
 			if (rs.next()) {
 				int score = rs.getInt("score");
-				if (score < 100) {
-					vip = "Bronze";
-					if(!dto.getVip().equals(vip)) {
-						System.out.println("등급 갱신!");
-					}
-				} else if (score >= 200 && score < 400) {
+
+				if (score >= 200 && score < 400) {
 					vip = "Silver";
-					if(!dto.getVip().equals(vip)) {
-						System.out.println("등급 갱신!");
+					if (!dto.getVip().equals(vip)) {
+						System.out.println("Silver 등급 갱신!");
 					}
 				} else if (score >= 400 && score < 700) {
 					vip = "Gold";
-					if(!dto.getVip().equals(vip)) {
-						System.out.println("등급 갱신!");
+					if (!dto.getVip().equals(vip)) {
+						System.out.println("Gold 등급 갱신!");
 					}
 				} else if (score >= 1000) {
 					vip = "G.O.A.T";
-					if(!dto.getVip().equals(vip)) {
-						System.out.println("등급 갱신!");
+					if (!dto.getVip().equals(vip)) {
+						System.out.println("G.O.A.T 등급 갱신!");
 					}
 				}
 				String sql2 = "update cgi_23K_BIG23_p1_4.user set vip = ? where id = ? and pw = ?";
@@ -350,6 +346,9 @@ public class HangmanDAO {
 			System.out.print(" _ ");
 		}
 
+		// 입력한 알파벳을 저장할 배열
+		ArrayList<Character> insertArr = new ArrayList<>();
+
 		// 알파벳을 맞출 때 저장할 배열
 		Character[] answerArr = new Character[word.length()];
 		System.out.println();
@@ -371,6 +370,36 @@ public class HangmanDAO {
 			// 한글자의 알파벳 입력
 			System.out.print("\n알파벳을 입력해 주세요 >> ");
 			char alpa = sc.next().charAt(0);
+
+			// 알파벳이 아닌 다른 걸 입력시 다시 실행
+			while (true) {
+				if (alpa >= 0x61 && alpa <= 0x7A) { // 소문자
+					break;
+				} else if (alpa >= 0x41 && alpa <= 0x5A) {
+					alpa = Character.toLowerCase(alpa); // 대문자 입력시 소문자로 바꿔주는..
+					break;
+
+				} else {
+					System.out.println("다시 입력해주세요."); // 알파벳이 아닌 다른 걸 입력시 다시 입력 받음
+					System.out.print("\n알파벳을 입력해 주세요 >> ");
+					alpa = sc.next().charAt(0);
+				}
+			}
+			// 입력한 알파벳을 insertArr배열에 저장
+			insertArr.add(alpa);
+			while (true) {
+				for (int i = 0; i < insertArr.size(); i++) {
+					if (i >= 1) {
+						if (insertArr.get(i - 1) == alpa) {
+							System.out.println("입력한 알파벳입니다.");
+							insertArr.remove(insertArr.size()-1);
+						}
+					}
+				}
+
+				break;
+			}
+
 			boolean found = false; // 알파벳이 틀렸을 시, count하기 위해 변수 선언
 			boolean allNotNull = true; // 알파벳을 전부 맞췄을 시 확인하기 위한 변수
 
@@ -433,7 +462,7 @@ public class HangmanDAO {
 				System.out.println("\n행맨을 살리셨습니다. 축하합니다.");
 				break;
 			}
-			// 알파벳를 맞추지 못했다면 found가 false로 바뀌며 count값 증가
+			// 알파벳를 맞추지 못했다면 count값 증가
 			if (!found) {
 				count++;
 			}
