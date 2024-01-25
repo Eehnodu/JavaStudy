@@ -40,7 +40,7 @@ public class HangmanMain {
 				String id = sc.next();
 				System.out.print(" 비밀번호 입력 : ");
 				String pw = sc.next();
-				System.out.println("|=================================|");
+				System.out.println("|=======================================|");
 				System.out.println();
 
 				HangmanDTO dto = dao.login(id, pw);
@@ -118,7 +118,7 @@ public class HangmanMain {
 				String pw = sc.next();
 				System.out.print(" 닉네임 입력 : ");
 				String nickname = sc.next();
-				System.out.println("|==============================|");
+				System.out.println("|=====================================|");
 				System.out.println();
 
 				HangmanDTO dto = new HangmanDTO(id, pw, nickname, null);
@@ -136,11 +136,12 @@ public class HangmanMain {
 				// 회원탈퇴 처리
 				System.out.println();
 				System.out.println("|=========회원탈퇴를 수행합니다=========|");
-				System.out.print("┌( ಠ_ಠ)┘ 탈퇴할 ID 입력 : ┌( ಠ_ಠ)┘");
+				System.out.print("┌( ಠ_ಠ)┘ 탈퇴할 ID 입력 : ");
 				String id = sc.next();
-				System.out.print("(ノ｀Д)ノ 탈퇴할 ID의 PW 입력 : (ノ｀Д)ノ");
+				
+				System.out.print("(ノ｀Д)ノ 탈퇴할 ID의 PW 입력 : ");
 				String pw = sc.next();
-				System.out.println("|================================|");
+				System.out.println("|=======================================|");
 				System.out.println();
 				int row = dao.delete(id, pw);
 
@@ -155,8 +156,8 @@ public class HangmanMain {
 			} else if (choice == 4) {
 				// 랭킹조회 처리
 				System.out.println();
-				System.out.println("|==============랭킹조회를 수행합니다=============|");
-				System.out.println(" ★☆★☆★☆★☆★☆★☆★☆★전체 회원 조회★☆★☆★☆★☆★☆★☆★");
+				System.out.println("|==============랭킹 조회를 수행합니다=============|");
+				System.out.println(" ★☆★☆★☆★☆★☆전체 회원 조회☆★☆★☆★☆★");
 				System.out.println("\t랭킹 \t이름 \t등급 \t점수");
 
 				ArrayList<HangmanDTO> arr = dao.selectAll();
@@ -165,7 +166,7 @@ public class HangmanMain {
 					System.out.println("\t" + (i + 1) + " \t" + arr.get(i).getNickname() + " \t" + arr.get(i).getVip()
 							+ " \t" + arr.get(i).getScore());
 				}
-				System.out.println(" ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★");
+				System.out.println(" ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★");
 				System.out.println();
 			} else if (choice == 5) {
 				// 종료 처리

@@ -390,6 +390,7 @@ public class HangmanDAO {
 					alpa = sc.next().charAt(0);
 				}
 			}
+			System.out.println();
 			// 입력한 알파벳을 insertArr배열에 저장
 			insertArr.add(alpa);
 			while (true) {
@@ -493,6 +494,7 @@ public class HangmanDAO {
 				System.out.print(" 힌트3 : " + t.get(num).getHint3() + "\t");
 			}
 			// 행맨 그리기
+			System.out.println();
 			switch (count) {
 			case 0:
 				hang();
@@ -596,7 +598,6 @@ public class HangmanDAO {
 				+ "                        !@!                                                                         \n"
 				+ "     -!$##@@@@@@@@@@@@@@@@@@@@@@@@@@@######@@@=                                                     \n"
 				+ "                                                                                                    \n"
-				+ "                                                                                                    \n"
 				+ "                                                                                                    \n";
 		System.out.println(asciiArt);
 	}
@@ -636,7 +637,6 @@ public class HangmanDAO {
 				+ "                        .#                                                                          \n"
 				+ "                        !@!                                                                         \n"
 				+ "     -!$##@@@@@@@@@@@@@@@@@@@@@@@@@@@######@@@=                                                     \n"
-				+ "                                                                                                    \n"
 				+ "                                                                                                    \n"
 				+ "                                                                                                    \n";
 		System.out.println(asciiArt);
@@ -679,7 +679,6 @@ public class HangmanDAO {
 				+ "                        !@!                                                                         \n"
 				+ "     -!$##@@@@@@@@@@@@@@@@@@@@@@@@@@@######@@@=                                                     \n"
 				+ "                                                                                                    \n"
-				+ "                                                                                                    \n"
 				+ "                                                                                                    \n";
 		System.out.println(asciiArt);
 
@@ -721,7 +720,6 @@ public class HangmanDAO {
 				+ "                        !@!                                                                         \n"
 				+ "     -!$##@@@@@@@@@@@@@@@@@@@@@@@@@@@######@@@=                                                     \n"
 				+ "                                                                                                    \n"
-				+ "                                                                                                    \n"
 				+ "                                                                                                    \n";
 		System.out.println(asciiArt);
 	}
@@ -761,7 +759,6 @@ public class HangmanDAO {
 				+ "                        .#                                                                          \n"
 				+ "                        !@!                                                                         \n"
 				+ "     -!$##@@@@@@@@@@@@@@@@@@@@@@@@@@@######@@@=                                                     \n"
-				+ "                                                                                                    \n"
 				+ "                                                                                                    \n"
 				+ "                                                                                                    \n";
 		System.out.println(asciiArt);
@@ -803,7 +800,6 @@ public class HangmanDAO {
 				+ "                        !@!                                                                         \n"
 				+ "     -!$##@@@@@@@@@@@@@@@@@@@@@@@@@@@######@@@=                                                     \n"
 				+ "                                                                                                    \n"
-				+ "                                                                                                    \n"
 				+ "                                                                                                    \n";
 		System.out.println(asciiArt);
 	}
@@ -842,7 +838,6 @@ public class HangmanDAO {
 				+ "                        .#                                                                          \n"
 				+ "                        !@!                                                                         \n"
 				+ "     -!$##@@@@@@@@@@@@@@@@@@@@@@@@@@@######@@@=                                                     \n"
-				+ "                                                                                                    \n"
 				+ "                                                                                                    \n"
 				+ "                                                                                                    \n";
 		System.out.println(asciiArt);
