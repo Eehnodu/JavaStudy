@@ -41,9 +41,9 @@ public class HangmanDAO {
 	private void getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/hangman";
-			String user = "root";
-			String password = "12345";
+			String url = "jdbc:mysql://project-db-campus.smhrd.com:3307/cgi_23K_BIG23_p1_4";
+			String user = "cgi_23K_BIG23_p1_4";
+			String password = "smhrd4";
 			conn = DriverManager.getConnection(url, user, password);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class HangmanDAO {
 				System.out.println("DB연결 실패");
 			}
 
-			String sql = "INSERT INTO hangman.user (id, pw, nickname, vip) VALUES (?, ?, ?, ?)";
+			String sql = "INSERT INTO cgi_23K_BIG23_p1_4.user (id, pw, nickname, vip) VALUES (?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, dto.getId());
@@ -89,7 +89,7 @@ public class HangmanDAO {
 				System.out.println("DB 연결 실패");
 			}
 
-			String sql = "SELECT * FROM hangman.user WHERE ID = ? AND PW = ? ";
+			String sql = "SELECT * FROM cgi_23K_BIG23_p1_4.user WHERE ID = ? AND PW = ? ";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, id);
@@ -121,7 +121,7 @@ public class HangmanDAO {
 		try {
 			getConnection();
 
-			String sql = "DELETE FROM hangman.user WHERE ID = ? AND PW = ? ";
+			String sql = "DELETE FROM cgi_23K_BIG23_p1_4.user WHERE ID = ? AND PW = ? ";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, id);
@@ -143,7 +143,7 @@ public class HangmanDAO {
 		try {
 			getConnection();
 
-			String sql = "SELECT * FROM hangman.user ORDER BY user.score desc";
+			String sql = "SELECT * FROM cgi_23K_BIG23_p1_4.user ORDER BY user.score desc";
 			psmt = conn.prepareStatement(sql);
 
 			rs = psmt.executeQuery();
@@ -168,7 +168,7 @@ public class HangmanDAO {
 		int row = 0;
 		try {
 			getConnection();
-			String sql = "SELECT * FROM hangman.user WHERE id = ? AND pw = ?";
+			String sql = "SELECT * FROM cgi_23K_BIG23_p1_4.user WHERE id = ? AND pw = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPw());
@@ -178,9 +178,12 @@ public class HangmanDAO {
 				// 사용자가 존재할 경우에만 업데이트 실행
 				int currentScore = rs.getInt("score");
 				int updatedScore = currentScore + score;
-
+				if(currentScore != updatedScore) {
+					System.out.println("점수 갱신!");
+				}
+				
 				// 점수 업데이트
-				String updateSql = "UPDATE hangman.user SET score = ? WHERE id = ? AND pw = ?";
+				String updateSql = "UPDATE cgi_23K_BIG23_p1_4.user SET score = ? WHERE id = ? AND pw = ?";
 				psmt = conn.prepareStatement(updateSql);
 				psmt.setInt(1, updatedScore);
 				psmt.setString(2, dto.getId());
@@ -202,7 +205,7 @@ public class HangmanDAO {
 		String vip = "";
 		try {
 			getConnection();
-			String sql = "SELECT * FROM hangman.user WHERE id = ? AND pw = ?";
+			String sql = "SELECT * FROM cgi_23K_BIG23_p1_4.user WHERE id = ? AND pw = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPw());
@@ -212,14 +215,26 @@ public class HangmanDAO {
 				int score = rs.getInt("score");
 				if (score < 100) {
 					vip = "Bronze";
-				} else if (score >= 100 && score < 200) {
+					if(!dto.getVip().equals(vip)) {
+						System.out.println("등급 갱신!");
+					}
+				} else if (score >= 200 && score < 400) {
 					vip = "Silver";
-				} else if (score >= 200 && score < 300) {
+					if(!dto.getVip().equals(vip)) {
+						System.out.println("등급 갱신!");
+					}
+				} else if (score >= 400 && score < 700) {
 					vip = "Gold";
-				} else if (score >= 300) {
+					if(!dto.getVip().equals(vip)) {
+						System.out.println("등급 갱신!");
+					}
+				} else if (score >= 1000) {
 					vip = "G.O.A.T";
+					if(!dto.getVip().equals(vip)) {
+						System.out.println("등급 갱신!");
+					}
 				}
-				String sql2 = "update hangman.user set vip = ? where id = ? and pw = ?";
+				String sql2 = "update cgi_23K_BIG23_p1_4.user set vip = ? where id = ? and pw = ?";
 				psmt = conn.prepareStatement(sql2);
 				psmt.setString(1, vip);
 				psmt.setString(2, dto.getId());
@@ -243,7 +258,7 @@ public class HangmanDAO {
 
 			getConnection();
 
-			String sql = "select * from hangman.words_high";
+			String sql = "select * from cgi_23K_BIG23_p1_4.words_high";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -271,7 +286,7 @@ public class HangmanDAO {
 
 			getConnection();
 
-			String sql = "select * from hangman.words_mid";
+			String sql = "select * from cgi_23K_BIG23_p1_4.words_mid";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -297,7 +312,7 @@ public class HangmanDAO {
 
 			getConnection();
 
-			String sql = "select * from hangman.words_low";
+			String sql = "select * from cgi_23K_BIG23_p1_4.words_low";
 
 			psmt = conn.prepareStatement(sql);
 

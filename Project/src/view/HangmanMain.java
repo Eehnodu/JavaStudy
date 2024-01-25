@@ -75,39 +75,25 @@ public class HangmanMain {
 							// 하 난이도의 행맨게임 실행
 							score = dao.hangmangame(lList);
 							int scorerow = dao.updateScore(dto, score);
-							if (scorerow > 0) {
-								System.out.println("점수 갱신");
-							}
+							
 							int viprow = dao.updateVip(dto);
-							if (viprow > 0) {
-								System.out.println("등급 갱신");
-							}
 						}
 						// 중 게임 실행
 						else if (nan == 2) {
 							// 중 난이도의 행맨게임 실행
 							score = dao.hangmangame(mList);
 							int scorerow = dao.updateScore(dto, score);
-							if (scorerow > 0) {
-								System.out.println("점수 갱신");
-							}
+							
 							int viprow = dao.updateVip(dto);
-							if (viprow > 0) {
-								System.out.println("등급 갱신");
-							}
 						}
 						// 상 게임 실행
 						else if (nan == 3) {
 							// 상 난이도의 행맨게임 실행
 							score = dao.hangmangame(hList);
 							int scorerow = dao.updateScore(dto, score);
-							if (scorerow > 0) {
-								System.out.println("점수 갱신");
-							}
+							
 							int viprow = dao.updateVip(dto);
-							if (viprow > 0) {
-								System.out.println("등급 갱신");
-							}
+							
 
 						} else if (nan == 4) {
 							System.out.println("뒤로 가기를 선택했습니다. 메인 메뉴로 돌아갑니다.");
