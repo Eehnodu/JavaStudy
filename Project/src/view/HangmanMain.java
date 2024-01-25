@@ -23,6 +23,7 @@ public class HangmanMain {
 		dao.hangmanimage();
 		System.out.println();
 		boolean isRunning = true;
+		
 
 		// 메인화면
 		while (isRunning) {
