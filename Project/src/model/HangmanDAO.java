@@ -213,21 +213,22 @@ public class HangmanDAO {
 
 			if (rs.next()) {
 				int score = rs.getInt("score");
+				String Vip = rs.getString("vip");
 
 				if (score >= 200 && score < 400) {
 					vip = "Silver";
-					if (!dto.getVip().equals(vip)) {
-						System.out.println("Silver 등급 갱신!");
+					if (Vip != vip) {
+						System.out.println("Silver 등급 갱신");
 					}
 				} else if (score >= 400 && score < 700) {
 					vip = "Gold";
-					if (!dto.getVip().equals(vip)) {
-						System.out.println("Gold 등급 갱신!");
+					if (Vip != vip) {
+						System.out.println("Gold 등급 갱신");
 					}
 				} else if (score >= 1000) {
-					vip = "G.O.A.T";
-					if (!dto.getVip().equals(vip)) {
-						System.out.println("G.O.A.T 등급 갱신!");
+					vip = "GOAT";
+					if (Vip != vip) {
+						System.out.println("G.O.A.T 등급 갱신");
 					}
 				}
 				String sql2 = "update cgi_23K_BIG23_p1_4.user set vip = ? where id = ? and pw = ?";
@@ -367,6 +368,9 @@ public class HangmanDAO {
 		// 행맨 게임(알파벳 맞추기)
 		while (count <= 6) {
 
+			boolean found = false; // 알파벳이 틀렸을 시, count하기 위해 변수 선언
+			boolean allNotNull = true; // 알파벳을 전부 맞췄을 시 확인하기 위한 변수
+
 			// 한글자의 알파벳 입력
 			System.out.print("\n알파벳을 입력해 주세요 >> ");
 			char alpa = sc.next().charAt(0);
@@ -392,16 +396,13 @@ public class HangmanDAO {
 					if (i >= 1) {
 						if (insertArr.get(i - 1) == alpa) {
 							System.out.println("입력한 알파벳입니다.");
-							insertArr.remove(insertArr.size()-1);
+							insertArr.remove(insertArr.size() - 1);
+							found = true;
 						}
 					}
 				}
-
 				break;
 			}
-
-			boolean found = false; // 알파벳이 틀렸을 시, count하기 위해 변수 선언
-			boolean allNotNull = true; // 알파벳을 전부 맞췄을 시 확인하기 위한 변수
 
 			// arr과 alpa가 일치할 경우 answerArr배열에 alpa값 삽입
 			for (int i = 0; i < arr.length; i++) {
@@ -463,7 +464,7 @@ public class HangmanDAO {
 				break;
 			}
 			// 알파벳를 맞추지 못했다면 count값 증가
-			if (!found) {
+			if (!found ) {
 				count++;
 			}
 			// count가 6을 넘어가면 행맨 종료

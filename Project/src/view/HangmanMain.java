@@ -22,17 +22,17 @@ public class HangmanMain {
 		ArrayList<LowWordDTO> lList = dao.lWordsAll();
 		ArrayList<MidWordDTO> mList = dao.mWordsAll();
 		ArrayList<HighWordDTO> hList = dao.hWordsAll();
-		
+
 		String comPath = "C:\\Users\\smhrd\\Desktop\\JavaStudy\\Project\\player\\";
 		MP3Player mp3 = new MP3Player();
-		
+
 		System.out.println("===========행맨 게임을 시작합니다!!===========");
 		dao.hangmanimage();
 		boolean isRunning = true;
 
 		// 메인화면
 		while (isRunning) {
-			// 게임 시작 BGM 
+			// 게임 시작 BGM
 			dao.startBgm();
 			System.out.print("[1]로그인 [2]회원가입 [3]회원탈퇴 [4]랭킹조회 [5]종료 >> ");
 			int choice = sc.nextInt();
@@ -66,7 +66,7 @@ public class HangmanMain {
 						System.out.println("게임 난이도 선택 및 뒤로가기");
 						System.out.print("[1]하 [2]중 [3]상 [4]뒤로가기 >> ");
 						int nan = sc.nextInt();
-						
+
 						// 행맨게임의 결과를 저장할 변수 선언
 						int score = 0;
 
@@ -75,7 +75,6 @@ public class HangmanMain {
 							// 하 난이도의 행맨게임 실행
 							score = dao.hangmangame(lList);
 							int scorerow = dao.updateScore(dto, score);
-							
 							int viprow = dao.updateVip(dto);
 						}
 						// 중 게임 실행
@@ -83,7 +82,6 @@ public class HangmanMain {
 							// 중 난이도의 행맨게임 실행
 							score = dao.hangmangame(mList);
 							int scorerow = dao.updateScore(dto, score);
-							
 							int viprow = dao.updateVip(dto);
 						}
 						// 상 게임 실행
@@ -91,9 +89,7 @@ public class HangmanMain {
 							// 상 난이도의 행맨게임 실행
 							score = dao.hangmangame(hList);
 							int scorerow = dao.updateScore(dto, score);
-							
 							int viprow = dao.updateVip(dto);
-							
 
 						} else if (nan == 4) {
 							System.out.println("뒤로 가기를 선택했습니다. 메인 메뉴로 돌아갑니다.");
@@ -155,13 +151,13 @@ public class HangmanMain {
 				System.out.println("게임이 종료되었습니다.");
 				isRunning = false;//
 				break;
-				
+
 			} else {
 				// 숫자를 잘못 입력 했을 시
 				System.out.println("숫자를 잘못 입력하였습니다. 다시 선택해주세요.");
 			}
 		}
 		dao.endBgm();
-		
+
 	}
 }
