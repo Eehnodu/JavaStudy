@@ -209,26 +209,26 @@ public class HangmanDAO {
 			if (rs.next()) {
 				int score = rs.getInt("score");
 				String Vip = rs.getString("vip");
-				if (score < 200) {
+				if (score < 500) {
 					vip = "Bronze";
 					if (Vip != vip) {
 						vip = "Bronze";
 					}
 
-				} else if (score >= 200 && score < 400) {
+				} else if (score >= 500 && score < 2000) {
 					vip = "Silver";
 					if (Vip != vip) {
 						vip = "Silver";
 					}
-				} else if (score >= 400 && score < 700) {
+				} else if (score >= 2000 && score < 5000) {
 					vip = "Gold";
 					if (Vip != vip) {
 						vip = "Gold";
 					}
-				} else if (score >= 700) {
-					vip = "GOAT";
+				} else if (score >= 5000) {
+					vip = "GOAT★";
 					if (Vip != vip) {
-						vip = "GOAT";
+						vip = "GOAT★";
 					}
 				}
 				String sql2 = "update cgi_23K_BIG23_p1_4.user set vip = ? where id = ? and pw = ?";
@@ -397,7 +397,7 @@ public class HangmanDAO {
 				for (int i = 0; i < insertArr.size(); i++) {
 					if (i >= 1) {
 						if (insertArr.get(i - 1) == alpa) {
-							System.out.println(" (╬▔皿▔)╯입력한 알파벳 입니다");
+							System.out.println(" (ﾟДﾟ*)ﾉ 입력한 알파벳입니다");
 							insertArr.remove(insertArr.size() - 1);
 							found = true;
 						}
@@ -463,7 +463,7 @@ public class HangmanDAO {
 					score = 80 + (6 - count) * 30;
 				}
 				successBgm();
-				System.out.println("\n (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧행맨을 살렸습니다\n");
+				System.out.println("\n o(￣▽￣)ｄ 행맨을 살렸습니다\n");
 				break;
 			}
 			// 알파벳를 맞추지 못했다면 count값 증가
@@ -472,7 +472,7 @@ public class HangmanDAO {
 			}
 			// count가 6을 넘어가면 행맨 종료
 			if (count > 6) {
-				System.out.println("\n (;´༎ຶД༎ຶ`)행맨을 살리지 못했습니다.\n\n (～￣▽￣)～정답은");
+				System.out.println("\n (;´༎ຶД༎ຶ`) 행맨을 살리지 못했습니다.\n\n (～￣▽￣)～정답은");
 				System.out.print(" [");
 				for (char ch : arr) {
 					System.out.print(" " + ch + " ");

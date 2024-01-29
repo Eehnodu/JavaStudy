@@ -158,13 +158,13 @@ public class HangmanMain {
 				System.out.println();
 				System.out.println("|==============랭킹 조회를 수행합니다=============|");
 				System.out.println(" ★☆★☆★☆★☆★☆전체 회원 조회☆★☆★☆★☆★");
-				System.out.println("\t랭킹 \t이름 \t등급 \t점수");
+				System.out.println("\t랭킹\t이름\t등급\t점수");
 
 				ArrayList<HangmanDTO> arr = dao.selectAll();
 
 				for (int i = 0; i < arr.size(); i++) {
-					System.out.println("\t" + (i + 1) + " \t" + arr.get(i).getNickname() + " \t" + arr.get(i).getVip()
-							+ " \t" + arr.get(i).getScore());
+					System.out.println("\t" + (i + 1) + "\t" + arr.get(i).getNickname()+ "\t" + arr.get(i).getVip()
+							+ "\t" + arr.get(i).getScore());
 				}
 				System.out.println(" ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★");
 				System.out.println();
